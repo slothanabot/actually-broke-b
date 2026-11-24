@@ -15,6 +15,9 @@ LINE = (
 
 
 def main() -> None:
+    # The gate allows 1-200 characters: refuse to ship a line that cannot pass.
+    if not 1 <= len(LINE) <= 200:
+        raise SystemExit(f"entry line is {len(LINE)} chars, outside the 1-200 gate")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
